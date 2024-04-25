@@ -49,13 +49,17 @@ public class Game {
         String answer = input.nextLine();
         if(answer.equals("n")) {
             //exit the program
+            return;
         }
         else if (answer.equals("y")) {
-            started = true;
             window.repaint();
+            started = true;
         }
         else {
-
+            while (!answer.equals("n") || !answer.equals("y")) {
+                System.out.println("Type either y or n");
+                answer = input.nextLine();
+            }
         }
     }
     public static void main(String[] args) {

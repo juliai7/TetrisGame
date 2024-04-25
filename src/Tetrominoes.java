@@ -36,7 +36,16 @@ public class Tetrominoes {
         return value;
     }
     public void draw (Graphics g, int x, int y) {
-
+        for (int i = 0; i < shape.length; i++) {
+            for (int j = 0; j < shape[i].length; j++) {
+                if (shape[i][j] != null) {
+                    g.setColor(shape[i][j]);
+                    g.fillRect(x + j * 10, y + i * 10, 10, 10);
+                    g.setColor(Color.black);
+                    g.drawRect(x + j * 10, y + i * 10, 10, 10);
+                }
+            }
+        }
     }
 
 }

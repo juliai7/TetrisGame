@@ -3,14 +3,14 @@ import javax.swing.*;
 
 
 public class GameViewer extends JFrame{
-    private Image[] piecesImages;
+    private Tetrominoes blocks;
     private Game game;
     private final int WINDOW_WIDTH = 500;
     private final int WINDOW_HEIGHT = 800;
 
     public GameViewer(Game game) {
         this.game = game;
-        piecesImages = new Image[6];
+         blocks = new Tetrominoes(0, 0, this, 1);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Tetris");
@@ -18,9 +18,6 @@ public class GameViewer extends JFrame{
         this.setVisible(true);
     }
 
-    public Image[] getPiecesImages() {
-        return piecesImages;
-    }
     public void paint (Graphics g) {
         if(!game.isStarted()) {
             g.setColor(Color.black);
@@ -37,7 +34,11 @@ public class GameViewer extends JFrame{
             g.drawString("(“BLOCKING OUT”) and the game will end.", 50, 600);
         }
         else if (!game.gameOver()) {
-
+            g.setColor(Color.white);
+            // Reset window
+            g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            blocks.draw(g, 0, 0);
         }
     }
 }
