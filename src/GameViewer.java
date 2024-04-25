@@ -10,7 +10,7 @@ public class GameViewer extends JFrame{
 
     public GameViewer(Game game) {
         this.game = game;
-         blocks = new Tetrominoes(0, 0, this, 1);
+         blocks = new Tetrominoes(50, 50, this, 1);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Tetris");
@@ -32,13 +32,17 @@ public class GameViewer extends JFrame{
             g.drawString("If you cannot complete a line, the blocks will eventually", 50, 500);
             g.drawString("stack up and rise to the top of the playing field", 50, 550);
             g.drawString("(“BLOCKING OUT”) and the game will end.", 50, 600);
+            g.setColor(Color.green);
+            g.drawRect(75, 650, 350, 100);
+            g.setFont(new Font("Serif", Font.PLAIN, 75));
+            g.drawString("PLAY", 160, 730);
         }
         else if (!game.gameOver()) {
             g.setColor(Color.white);
             // Reset window
             g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-            blocks.draw(g, 0, 0);
+            blocks.draw(g, 50, 50);
         }
     }
 }

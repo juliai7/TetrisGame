@@ -11,10 +11,11 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[2][2];
+        fillPiece();
         this.window = window;
         this.value = value;
     }
-    public void pieces() {
+    public void fillPiece() {
         shape[0][0] = Color.pink;
         shape[0][1] = Color.pink;
         shape[1][1] = Color.pink;
@@ -40,9 +41,9 @@ public class Tetrominoes {
             for (int j = 0; j < shape[i].length; j++) {
                 if (shape[i][j] != null) {
                     g.setColor(shape[i][j]);
-                    g.fillRect(x + j * 10, y + i * 10, 10, 10);
+                    g.fillRect(x + j * 50, y + i * 50, 50, 50);
                     g.setColor(Color.black);
-                    g.drawRect(x + j * 10, y + i * 10, 10, 10);
+                    g.drawRect(x + j * 50, y + i * 50, 50, 50);
                 }
             }
         }

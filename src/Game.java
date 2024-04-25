@@ -1,3 +1,4 @@
+import java.awt.event.MouseEvent;
 import java.util.Scanner;
 
 public class Game {
@@ -12,20 +13,6 @@ public class Game {
         score = 0;
         started = false;
 
-    }
-    public void printInstructions() {
-        System.out.println("In Tetris, you must arrange a sequence of small\n" +
-                "shapes, called Tetriminos, into complete lines.\n" +
-                "As each line is completed, it will disappear from\n" +
-                "the screen.\n" +
-                "Tetriminos fall from the top of the matrix to the\n" +
-                "bottom.\n" +
-                "You must rotate the Tetriminos as they fall and fit\n" +
-                "them together to create lines.\n" +
-                "If you cannot complete a line, the blocks will\n" +
-                "eventually stack up and rise to the top of the\n" +
-                "playing field (“BLOCKING OUT”) and the game\n" +
-                "will end. ");
     }
     public void checkCompletion() {
 
@@ -43,28 +30,16 @@ public class Game {
     }
 
     public void playGame() {
-        Scanner input = new Scanner(System.in);
-        printInstructions();
-        System.out.println("Would you like to play? (y/n)");
-        String answer = input.nextLine();
-        if(answer.equals("n")) {
-            //exit the program
-            return;
-        }
-        else if (answer.equals("y")) {
-            window.repaint();
-            started = true;
-        }
-        else {
-            while (!answer.equals("n") || !answer.equals("y")) {
-                System.out.println("Type either y or n");
-                answer = input.nextLine();
-            }
-        }
+
     }
     public static void main(String[] args) {
         Game newGame = new Game();
         newGame.playGame();
+    }
+    public void mousePressed(MouseEvent e) {
+        if (75 <= e.getX() && e.getX() <= 425 && e.getY() > )
+        started = true;
+        window.repaint();
     }
 
 }
