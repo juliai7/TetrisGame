@@ -32,11 +32,33 @@ public class Tetrominoes {
 
 
     }
+    public void shiftX(int shift, int xLow, int xHigh) {
+        if (x + shift <= xLow && shift < 0) {
+            x = xLow;
+        }
+        else if (x + 500 + shift >= xHigh && shift > 0) {
+            x = xHigh;
+        }
+        else {
+            x += shift;
+        }
+    }
+    public void shiftY(int shift, int yLow, int yHigh) {
+        if (y  + shift <= yLow && shift < 0) {
+            y = yLow;
+        }
+        else if (y + shift >= yHigh && shift > 0) {
+            y = yHigh;
+        }
+        else {
+            y += shift;
+        }
+    }
 
     public int getValue() {
         return value;
     }
-    public void draw (Graphics g, int x, int y) {
+    public void draw (Graphics g) {
         for (int i = 0; i < shape.length; i++) {
             for (int j = 0; j < shape[i].length; j++) {
                 if (shape[i][j] != null) {

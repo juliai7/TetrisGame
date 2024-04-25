@@ -1,7 +1,8 @@
 import java.awt.event.MouseEvent;
 import java.util.Scanner;
+import java.awt.event.*;
 
-public class Game {
+public class Game implements MouseListener, MouseMotionListener, KeyListener{
     private Board board;
     private GameViewer window;
     private Tetrominoes currPiece;
@@ -12,8 +13,16 @@ public class Game {
         window = new GameViewer(this);
         score = 0;
         started = false;
-
+        currPiece = new Tetrominoes(50, 50, window, 1);
+        window.addMouseListener(this);
+        window.addMouseMotionListener(this);
+        window.addKeyListener(this);
     }
+
+    public Tetrominoes getCurrPiece() {
+        return currPiece;
+    }
+
     public void checkCompletion() {
 
     }
@@ -36,10 +45,65 @@ public class Game {
         Game newGame = new Game();
         newGame.playGame();
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
     public void mousePressed(MouseEvent e) {
-        if (75 <= e.getX() && e.getX() <= 425 && e.getY() > )
-        started = true;
+        if (75 <= e.getX() && e.getX() <= 425 && e.getY() <= 750 && e.getY() >= 650) {
+            started = true;
+            window.repaint();
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                currPiece.shiftX(-50, 0, 500);
+                break;
+            case KeyEvent.VK_RIGHT:
+                currPiece.shiftX(50, 0, 500);
+                break;
+        }
         window.repaint();
     }
 
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }

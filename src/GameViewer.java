@@ -5,13 +5,11 @@ import javax.swing.*;
 public class GameViewer extends JFrame{
     private Tetrominoes blocks;
     private Game game;
-    private final int WINDOW_WIDTH = 500;
-    private final int WINDOW_HEIGHT = 800;
+    private static int WINDOW_WIDTH = 500;
+    private static int WINDOW_HEIGHT = 800;
 
     public GameViewer(Game game) {
         this.game = game;
-         blocks = new Tetrominoes(50, 50, this, 1);
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Tetris");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -42,7 +40,8 @@ public class GameViewer extends JFrame{
             // Reset window
             g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-            blocks.draw(g, 50, 50);
+            blocks = game.getCurrPiece();
+            blocks.draw(g);
         }
     }
 }
