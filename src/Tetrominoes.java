@@ -74,11 +74,6 @@ public class Tetrominoes {
         }
     }
     public void rotate() {
-//        Color temp = shape[0][0];
-//        shape[0][0] = shape[1][0];
-//        shape[1][0] = shape[1][1];
-//        shape[1][1] = shape[0][1];
-//        shape[0][1] = temp;
         if (rotated == 1) {
             Color temp = shape[0][0];
             shape[0][0] = null;
@@ -106,14 +101,6 @@ public class Tetrominoes {
         }
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public int getValue() {
         return value;
     }
@@ -123,8 +110,6 @@ public class Tetrominoes {
                 if (shape[i][j] != null) {
                     g.setColor(shape[i][j]);
                     g.fillRect(x + j * 50, y + i * 50, 50, 50);
-//                    g.setColor(Color.black);
-//                    g.drawRect(x + j * 50, y + i * 50, 50, 50);
                 }
             }
         }
