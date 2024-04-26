@@ -36,7 +36,7 @@ public class GameViewer extends JFrame{
             g.drawString("PLAY", 160, 730);
         }
         else if (!game.gameOver()) {
-            g.setColor(Color.white);
+            g.setColor(Color.black);
             // Reset window
             g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
