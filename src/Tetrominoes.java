@@ -7,6 +7,8 @@ public class Tetrominoes {
     private GameViewer window;
     private int value;
     private int rotated;
+    int length;
+    int width;
 
     public Tetrominoes (int x, int y, GameViewer window, int value) {
         this.x = x;
@@ -16,6 +18,8 @@ public class Tetrominoes {
         this.window = window;
         this.value = value;
         rotated = 1;
+        width = 0;
+        length = 0;
     }
     public void fillPiece() {
 //        shape[0][0] = Color.pink;
@@ -51,8 +55,8 @@ public class Tetrominoes {
         if (x + shift <= xLow && shift < 0) {
             x = xLow;
         }
-        else if (x + 100 + shift >= xHigh && shift > 0) {
-            x = xHigh - 100;
+        else if (x + width * 50 + shift >= xHigh && shift > 0) {
+            x = xHigh - width * 50;
         }
         else {
             x += shift;
@@ -62,8 +66,8 @@ public class Tetrominoes {
         if (y + shift <= yLow && shift < 0) {
             y = yLow;
         }
-        else if (y + 100 + shift >= yHigh && shift > 0) {
-            y = yHigh - 100;
+        else if (y + length * 50 + shift >= yHigh && shift > 0) {
+            y = yHigh - length * 50;
         }
         else {
             y += shift;
@@ -85,6 +89,8 @@ public class Tetrominoes {
             shape[1][0] = temp;
             shape[2][0] = shape[1][2];
             shape[1][2] = null;
+            length = 3;
+            width = 2;
             rotated++;
         }
         else {
@@ -95,6 +101,8 @@ public class Tetrominoes {
             shape[1][2] = shape[2][0];
             shape[2][0] = null;
             rotated = 1;
+            length = 2;
+            width = 3;
         }
     }
 

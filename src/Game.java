@@ -1,22 +1,28 @@
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.util.Scanner;
 import java.awt.event.*;
 
-public class Game implements MouseListener, MouseMotionListener, KeyListener{
+public class Game implements MouseListener, MouseMotionListener, KeyListener, ActionListener{
     private Board board;
     private GameViewer window;
     private Tetrominoes currPiece;
     private int score;
     private boolean started;
+    private static final int DELAY_IN_MILLISEC = 1000;
 
     public Game() {
         window = new GameViewer(this);
         score = 0;
         started = false;
-        currPiece = new Tetrominoes(200, 27, window, 1);
+        currPiece = new Tetrominoes(150, 0, window, 1);
         window.addMouseListener(this);
         window.addMouseMotionListener(this);
         window.addKeyListener(this);
+        Timer clock = new Timer(DELAY_IN_MILLISEC, this);
+
+        // Now actually start the timer.
+        clock.start();
     }
 
     public Tetrominoes getCurrPiece() {
@@ -113,5 +119,11 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        currPiece.shiftY(50, 0, 800);
+        window.repaint();
     }
 }
