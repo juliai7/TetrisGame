@@ -1,3 +1,4 @@
+//ask ms namasivayam how to do with multiple and make it stop moving when it reaches the bottom
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.util.Scanner;
@@ -123,7 +124,9 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        currPiece.shiftY(50, 0, 800);
-        window.repaint();
+        if (started == true) {
+            currPiece.shiftY(50, 0, 800);
+            window.repaint();
+        }
     }
 }

@@ -18,8 +18,8 @@ public class Tetrominoes {
         this.window = window;
         this.value = value;
         rotated = 1;
-        width = 0;
-        length = 0;
+        width = 3;
+        length = 2;
     }
     public void fillPiece() {
 //        shape[0][0] = Color.pink;
