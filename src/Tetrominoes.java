@@ -114,7 +114,7 @@ public class Tetrominoes {
     }
     public void draw (Graphics g) {
         for (int i = 0; i < shape.length; i++) {
-            for (int j = 0; j < shape[i].length; j++) {
+            for (int j = 0; j < width; j++) {
                 if (shape[i][j] != null) {
                     g.setColor(shape[i][j]);
                     g.fillRect(x + j * 50, y + i * 50, 50, 50);
@@ -123,4 +123,7 @@ public class Tetrominoes {
         }
     }
 
+    public int getX() {
+        return x;
+    }
 }

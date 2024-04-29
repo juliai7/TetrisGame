@@ -12,6 +12,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     private static final int DELAY_IN_MILLISEC = 1005;
 
     public Game() {
+        board = new Board(this);
         window = new GameViewer(this);
         score = 0;
         started = false;
@@ -25,15 +26,15 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         clock.start();
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     public Tetrominoes getCurrPiece() {
         return currPiece;
     }
 
     public void checkCompletion() {
-
-    }
-    //figure out how to get direction input
-    public void movePiece() {
 
     }
     public boolean gameOver() {
@@ -124,7 +125,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (started == true) {
+        if (started) {
             currPiece.shiftY(50, 0, 800);
             window.repaint();
         }

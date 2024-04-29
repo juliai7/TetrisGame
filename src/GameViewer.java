@@ -5,8 +5,10 @@ import javax.swing.*;
 public class GameViewer extends JFrame{
     private Tetrominoes blocks;
     private Game game;
-    private static int WINDOW_WIDTH = 500;
-    private static int WINDOW_HEIGHT = 800;
+    public static int WINDOW_WIDTH = 500;
+    public static int WINDOW_HEIGHT = 800;
+    private Board board;
+    public static int PIECE_SIZE = 50;
 
     public GameViewer(Game game) {
         this.game = game;
@@ -14,6 +16,7 @@ public class GameViewer extends JFrame{
         this.setTitle("Tetris");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setVisible(true);
+        board = game.getBoard();
     }
 
     public void paint (Graphics g) {
@@ -42,10 +45,8 @@ public class GameViewer extends JFrame{
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             blocks = game.getCurrPiece();
             blocks.draw(g);
-            // if its at the bottom of the screen
-            if (blocks.getY() == 800 - blocks.getLength() * 50) {
+            board.draw(g);
 
-            }
         }
     }
 }
