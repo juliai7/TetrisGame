@@ -42,6 +42,10 @@ public class GameViewer extends JFrame{
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             blocks = game.getCurrPiece();
             blocks.draw(g);
+            // if its at the bottom of the screen
+            if (blocks.getY() == 800 - blocks.getLength() * 50) {
+
+            }
         }
     }
 }

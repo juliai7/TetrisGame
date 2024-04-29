@@ -7,8 +7,8 @@ public class Tetrominoes {
     private GameViewer window;
     private int value;
     private int rotated;
-    int length;
-    int width;
+    private int length;
+    private int width;
 
     public Tetrominoes (int x, int y, GameViewer window, int value) {
         this.x = x;
@@ -99,6 +99,14 @@ public class Tetrominoes {
             length = 2;
             width = 3;
         }
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getLength() {
+        return length;
     }
 
     public int getValue() {

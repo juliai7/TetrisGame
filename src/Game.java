@@ -1,7 +1,6 @@
 //ask ms namasivayam how to do with multiple and make it stop moving when it reaches the bottom
 import javax.swing.*;
 import java.awt.event.MouseEvent;
-import java.util.Scanner;
 import java.awt.event.*;
 
 public class Game implements MouseListener, MouseMotionListener, KeyListener, ActionListener{
@@ -10,7 +9,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     private Tetrominoes currPiece;
     private int score;
     private boolean started;
-    private static final int DELAY_IN_MILLISEC = 1000;
+    private static final int DELAY_IN_MILLISEC = 1005;
 
     public Game() {
         window = new GameViewer(this);
@@ -46,11 +45,12 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     }
 
     public void playGame() {
-//        if (currPiece.getY() == 700) {
-//            currPiece = new Tetrominoes(200, 0, window, 1);
-//            window.repaint();
-//        }
     }
+
+    public void setCurrPiece(Tetrominoes currPiece) {
+        this.currPiece = currPiece;
+    }
+
     public static void main(String[] args) {
         Game newGame = new Game();
         newGame.playGame();
