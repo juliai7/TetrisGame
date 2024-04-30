@@ -21,6 +21,12 @@ public class Tetrominoes {
         width = 3;
         length = 2;
     }
+
+    public Color[][] getShape() {
+        return shape;
+    }
+
+
     public void fillPiece() {
 //        shape[0][0] = Color.pink;
 //        shape[0][1] = Color.pink;
@@ -41,8 +47,8 @@ public class Tetrominoes {
         Color[][] temp = new Color[3][3];
         temp[1][1] = Color.blue;
         Color[][] c = new Color[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
                 if(shape[i][j] != null && temp[i][j] == null) {
                     c[i][j] = shape[i][j];
                 }
@@ -99,6 +105,10 @@ public class Tetrominoes {
             length = 2;
             width = 3;
         }
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public int getY() {
