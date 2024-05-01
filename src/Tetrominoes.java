@@ -22,7 +22,7 @@ public class Tetrominoes {
         rotated = 1;
         width = 3;
         length = 2;
-        row = 0;
+        row = 1;
         col = 3;
     }
 
@@ -56,7 +56,13 @@ public class Tetrominoes {
         }
         else {
             x += shift;
-            col++;
+            //fix later
+            if (shift > 0) {
+                col++;
+            }
+            else {
+                col--;
+            }
         }
     }
     public void shiftY(int shift, int yLow, int yHigh) {
@@ -68,7 +74,13 @@ public class Tetrominoes {
         }
         else {
             y += shift;
-            row++;
+            if (shift > 0) {
+                row++;
+            }
+            else {
+                row--;
+            }
+
         }
     }
 
