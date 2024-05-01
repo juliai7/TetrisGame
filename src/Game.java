@@ -52,11 +52,6 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         this.currPiece = currPiece;
     }
 
-    public static void main(String[] args) {
-        Game newGame = new Game();
-        newGame.playGame();
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -126,8 +121,18 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     @Override
     public void actionPerformed(ActionEvent e) {
         if (started) {
-            currPiece.shiftY(50, 0, 800);
+            if(!board.hasHit(currPiece)) {
+                currPiece.shiftY(50, 0, 800);
+            } else {
+                currPiece = new Tetrominoes(150, 0, window, 1);
+            }
+
             window.repaint();
         }
+    }
+
+    public static void main(String[] args) {
+        Game newGame = new Game();
+        newGame.playGame();
     }
 }

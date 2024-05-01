@@ -9,6 +9,8 @@ public class Tetrominoes {
     private int rotated;
     private int length;
     private int width;
+    private int row;
+    private int col;
 
     public Tetrominoes (int x, int y, GameViewer window, int value) {
         this.x = x;
@@ -20,6 +22,8 @@ public class Tetrominoes {
         rotated = 1;
         width = 3;
         length = 2;
+        row = 0;
+        col = 3;
     }
 
     public Color[][] getShape() {
@@ -28,18 +32,6 @@ public class Tetrominoes {
 
 
     public void fillPiece() {
-//        shape[0][0] = Color.pink;
-//        shape[0][1] = Color.pink;
-//        shape[1][1] = Color.pink;
-//        Color[][] temp = new Color[2][2];
-//        temp[1][1] = Color.blue;
-//        Color[][] c = new Color[2][2];
-//        for (int i = 0; i < 2; i++) {
-//            for (int j = 0; j < 2; j++) {
-//                if(shape[i][j] != null && temp[i][j] == null) {
-//                    c[i][j] = shape[i][j];
-//                }
-//            }
         shape[0][0] = Color.pink;
         shape[0][1] = Color.pink;
         shape[1][1] = Color.pink;
@@ -49,13 +41,11 @@ public class Tetrominoes {
         Color[][] c = new Color[3][3];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                if(shape[i][j] != null && temp[i][j] == null) {
+                if (shape[i][j] != null && temp[i][j] == null) {
                     c[i][j] = shape[i][j];
                 }
             }
-    }
-
-
+        }
     }
     public void shiftX(int shift, int xLow, int xHigh) {
         if (x + shift <= xLow && shift < 0) {
@@ -66,6 +56,7 @@ public class Tetrominoes {
         }
         else {
             x += shift;
+            col++;
         }
     }
     public void shiftY(int shift, int yLow, int yHigh) {
@@ -77,8 +68,18 @@ public class Tetrominoes {
         }
         else {
             y += shift;
+            row++;
         }
     }
+
+    public int getCol() {
+        return col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
     public void rotate() {
         if (rotated == 1) {
             Color temp = shape[0][0];
