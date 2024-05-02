@@ -1,4 +1,3 @@
-//ask ms namasivayam how to do with multiple and make it stop moving when it reaches the bottom
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.*;

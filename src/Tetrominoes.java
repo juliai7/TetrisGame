@@ -50,9 +50,11 @@ public class Tetrominoes {
     public void shiftX(int shift, int xLow, int xHigh) {
         if (x + shift <= xLow && shift < 0) {
             x = xLow;
+            col = 0;
         }
         else if (x + width * 50 + shift >= xHigh && shift > 0) {
             x = xHigh - width * 50;
+            col = 10 - width;
         }
         else {
             x += shift;
@@ -65,6 +67,15 @@ public class Tetrominoes {
             }
         }
     }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
     public void shiftY(int shift, int yLow, int yHigh) {
         if (y + shift <= yLow && shift < 0) {
             y = yLow;

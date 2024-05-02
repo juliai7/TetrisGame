@@ -15,8 +15,8 @@ public class Board {
         grid = new Color[numRows][numCols];
         this.game = game;
     }
-    public boolean validPosition(int x, int y) {
-        if (grid[y / 50][x / 50] == null) {
+    public boolean validPosition(Tetrominoes currPiece, int x, int y) {
+        if (grid[currPiece.getRow()][currPiece.getCol()] == null) {
             return true;
         }
         return false;
@@ -33,14 +33,13 @@ public class Board {
             }
             return true;
         }
-        else if (!validPosition(currPiece.getX(), currPiece.getY())) {
+        else if (!validPosition(currPiece, currPiece.getX(), currPiece.getY())) {
             return true;
         }
         return false;
     }
     public void draw (Graphics g) {
         Tetrominoes piece = game.getCurrPiece();
-//        if (hasHit(piece)) {
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
                 if (grid[i][j] != null) {
@@ -49,7 +48,6 @@ public class Board {
                 }
             }
         }
-//        }
     }
 
 
