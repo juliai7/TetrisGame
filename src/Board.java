@@ -15,15 +15,37 @@ public class Board {
         grid = new Color[numRows][numCols];
         this.game = game;
     }
-    public boolean validPosition(Tetrominoes currPiece, int x, int y) {
-        if (grid[currPiece.getRow()][currPiece.getCol()] == null) {
-            return true;
+    public boolean validPosition(Tetrominoes currPiece) {
+        for (int i = 0; i < currPiece.getLength(); i++) {
+            for (int j = 0; j < currPiece.getWidth(); j++) {
+                if (currPiece.getShape()[i][j] != null) {
+                    if (grid[currPiece.getRow() + i + 1][currPiece.getCol() + j] != null) {
+                        return false;
+                    }
+                }
+            }
         }
-        return false;
+        return true;
+    }
+    public boolean filledRow(int row) {
+        for (int i = 0; i <= numCols; i++) {
+            if (grid[row][i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void removeRow() {
+        int row = game.getCurrPiece().getRow() + game.getCurrPiece().getLength();
+        if (filledRow(row)) {
+            for (int i = 0; i < numCols; i++) {
+                grid[row][i] = null;
+            }
+        }
     }
 
     public boolean hasHit(Tetrominoes currPiece) {
-        if (currPiece.getY() == 800 - (currPiece.getLength() * 50)) {
+        if (currPiece.getRow() == numRows - currPiece.getLength() || !validPosition(currPiece)) {
             for (int i = 0; i < currPiece.getLength(); i++) {
                 for (int j = 0; j < currPiece.getWidth(); j++) {
                     if(currPiece.getShape()[i][j] != null && grid[currPiece.getRow() + i][currPiece.getCol() + j] == null) {
@@ -31,9 +53,6 @@ public class Board {
                     }
                 }
             }
-            return true;
-        }
-        else if (!validPosition(currPiece, currPiece.getX(), currPiece.getY())) {
             return true;
         }
         return false;
