@@ -51,7 +51,6 @@ public class GameViewer extends JFrame{
             blocks = game.getCurrPiece();
             blocks.draw(g);
             board.draw(g);
-
         }
     }
 }

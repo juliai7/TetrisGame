@@ -36,12 +36,15 @@ public class Board {
         return true;
     }
     public void removeRow() {
-        int row = game.getCurrPiece().getRow() + game.getCurrPiece().getLength();
-        if (filledRow(row)) {
-            for (int i = 0; i < numCols; i++) {
-                grid[row][i] = null;
+        for (int i = numRows; i > 1; i--) {
+            if (filledRow(i)) {
+                for (int j = 0; j < numCols; j++) {
+                    grid[i][j] = grid[i - 1][j];
+                }
             }
         }
+
+
     }
 
     public boolean hasHit(Tetrominoes currPiece) {
@@ -67,6 +70,7 @@ public class Board {
                 }
             }
         }
+
     }
 
 

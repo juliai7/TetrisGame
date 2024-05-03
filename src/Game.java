@@ -125,7 +125,6 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
             } else {
                 currPiece = new Tetrominoes(150, 0, window, 1);
             }
-
             window.repaint();
         }
     }

@@ -11,17 +11,17 @@ public class Tetrominoes {
     private int width;
     private int row;
     private int col;
+    private int piece;
 
     public Tetrominoes (int x, int y, GameViewer window, int value) {
         this.x = x;
         this.y = y;
-        shape = new Color[3][3];
+        shape = new Color[4][4];
+        piece = (int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
         this.value = value;
         rotated = 1;
-        width = 3;
-        length = 2;
         row = 1;
         col = 3;
     }
@@ -32,20 +32,135 @@ public class Tetrominoes {
 
 
     public void fillPiece() {
-        shape[0][0] = Color.pink;
-        shape[0][1] = Color.pink;
-        shape[1][1] = Color.pink;
-        shape[1][2] = Color.pink;
-        Color[][] temp = new Color[3][3];
-        temp[1][1] = Color.blue;
-        Color[][] c = new Color[3][3];
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (shape[i][j] != null && temp[i][j] == null) {
-                    c[i][j] = shape[i][j];
+        if (piece == 1) {
+            width = 3;
+            length = 2;
+            shape[0][0] = Color.yellow;
+            shape[0][1] = Color.yellow;
+            shape[1][1] = Color.yellow;
+            shape[1][2] = Color.yellow;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
                 }
             }
         }
+        else if (piece == 2) {
+            length = 2;
+            width = 3;
+            shape[0][1] = Color.blue;
+            shape[0][2] = Color.blue;
+            shape[1][0] = Color.blue;
+            shape[1][1] = Color.blue;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+        }
+        else if (piece == 3) {
+            length = 2;
+            width = 3;
+            shape[0][1] = Color.red;
+            shape[1][0] = Color.red;
+            shape[1][1] = Color.red;
+            shape[1][2] = Color.red;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+
+        }
+        else if (piece == 4) {
+            length = 4;
+            width = 1;
+            shape[0][0] = Color.green;
+            shape[1][0] = Color.green;
+            shape[2][0] = Color.green;
+            shape[3][0] = Color.green;
+            Color[][] temp = new Color[4][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[4][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+        }
+        else if (piece == 5) {
+            length = 3;
+            width = 2;
+            shape[0][0] = Color.orange;
+            shape[1][0] = Color.orange;
+            shape[2][0] = Color.orange;
+            shape[2][1] = Color.orange;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+        }
+        else if (piece == 6) {
+            //change color later
+            length = 3;
+            width = 2;
+            shape[0][1] = Color.pink;
+            shape[1][1] = Color.pink;
+            shape[2][1] = Color.pink;
+            shape[2][0] = Color.pink;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+        }
+        else {
+            length = 2;
+            width = 2;
+            shape[0][0] = Color.blue;
+            shape[0][1] = Color.blue;
+            shape[1][0] = Color.blue;
+            shape[1][1] = Color.blue;
+            Color[][] temp = new Color[3][3];
+            temp[1][1] = Color.blue;
+            Color[][] c = new Color[3][3];
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (shape[i][j] != null && temp[i][j] == null) {
+                        c[i][j] = shape[i][j];
+                    }
+                }
+            }
+        }
+
     }
     public void shiftX(int shift, int xLow, int xHigh) {
         if (x + shift <= xLow && shift < 0) {
@@ -85,13 +200,7 @@ public class Tetrominoes {
         }
         else {
             y += shift;
-            if (shift > 0) {
-                row++;
-            }
-            else {
-                row--;
-            }
-
+            row++;
         }
     }
 
@@ -104,30 +213,39 @@ public class Tetrominoes {
     }
 
     public void rotate() {
-        if (rotated == 1) {
-            Color temp = shape[0][0];
-            shape[0][0] = null;
-            Color temp2 = shape[0][1];
-            shape[0][1] = temp;
-            temp = shape[1][1];
-            shape[1][1] = temp2;
-            shape[1][0] = temp;
-            shape[2][0] = shape[1][2];
-            shape[1][2] = null;
-            length = 3;
-            width = 2;
-            rotated++;
+        if (piece == 1) {
+            if (rotated == 1) {
+                Color temp = shape[0][0];
+                shape[0][0] = null;
+                Color temp2 = shape[0][1];
+                shape[0][1] = temp;
+                temp = shape[1][1];
+                shape[1][1] = temp2;
+                shape[1][0] = temp;
+                shape[2][0] = shape[1][2];
+                shape[1][2] = null;
+                length = 3;
+                width = 2;
+                rotated++;
+            } else {
+                shape[0][0] = shape[0][1];
+                shape[0][1] = shape[1][1];
+                shape[1][1] = shape[1][0];
+                shape[1][0] = null;
+                shape[1][2] = shape[2][0];
+                shape[2][0] = null;
+                rotated = 1;
+                length = 2;
+                width = 3;
+            }
         }
-        else {
-            shape[0][0] = shape[0][1];
-            shape[0][1] = shape[1][1];
-            shape[1][1] = shape[1][0];
-            shape[1][0] = null;
-            shape[1][2] = shape[2][0];
-            shape[2][0] = null;
-            rotated = 1;
-            length = 2;
-            width = 3;
+        else if (piece == 2) {
+            if (rotated == 1) {
+
+                length = 3;
+                width = 2;
+                rotated++;
+            }
         }
     }
 
@@ -147,7 +265,7 @@ public class Tetrominoes {
         return value;
     }
     public void draw (Graphics g) {
-        for (int i = 0; i < shape.length; i++) {
+        for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 if (shape[i][j] != null) {
                     g.setColor(shape[i][j]);
