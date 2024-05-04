@@ -241,11 +241,20 @@ public class Tetrominoes {
         }
         else if (piece == 2) {
             if (rotated == 1) {
-
+                Color temp = shape[0][2];
+                shape[0][2] = null;
+                Color temp2 = shape[0][1];
+                shape[0][1] = temp;
+                temp = shape[1][1];
+                shape[1][1] = temp2;
+                shape[1][2] = temp;
+                shape[2][2] = shape[1][0];
+                shape[1][0] = null;
                 length = 3;
                 width = 2;
                 rotated++;
             }
+
         }
     }
 
