@@ -15,7 +15,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         window = new GameViewer(this);
         score = 0;
         started = false;
-        currPiece = new Tetrominoes(150, 0, window, 1);
+        currPiece = new Tetrominoes(200, 0, window, 50);
         window.addMouseListener(this);
         window.addMouseMotionListener(this);
         window.addKeyListener(this);
@@ -55,7 +55,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
             currPiece.shiftY(50, 0, 800);
         } else {
             board.removeRow();
-            currPiece = new Tetrominoes(150, 0, window, 1);
+            currPiece = new Tetrominoes(200, 0, window, 50);
         }
         window.repaint();
     }

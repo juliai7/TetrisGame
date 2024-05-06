@@ -35,19 +35,31 @@ public class Board {
         }
         return true;
     }
+    //only removes one row at a time
     public void removeRow() {
         for (int fullRow = numRows - 1; fullRow > 0; fullRow--) {
             if (filledRow(fullRow)) {
                 for(int row = fullRow; row > 0; row--) {
                     for (int j = 0; j < numCols; j++) {
+
                         grid[row][j] = grid[row - 1][j];
                         grid[row - 1][j] = null;
                     }
                 }
+                fullRow--;
             }
+
         }
 
 
+    }
+    public boolean gameOver() {
+        for (int i = 0; i < numCols; i++) {
+            if (grid[2][i] != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean hasHit(Tetrominoes currPiece) {

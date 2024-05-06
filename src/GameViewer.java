@@ -41,7 +41,7 @@ public class GameViewer extends JFrame{
             g.setColor(new Color(89, 146, 218, 255));
             g.drawString("TETRIS", 85, 125);
         }
-        else if (!game.gameOver()) {
+        else if (!board.gameOver()) {
             g.setColor(Color.black);
             // Reset window
             g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -51,6 +51,15 @@ public class GameViewer extends JFrame{
             blocks = game.getCurrPiece();
             blocks.draw(g);
             board.draw(g);
+        }
+        else {
+            g.setColor(Color.black);
+            // Reset window
+            g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.setColor(Color.red);
+            g.setFont(new Font("Serif", Font.PLAIN, 50));
+            g.drawString("GAME OVER", 110, 350);
         }
     }
 }

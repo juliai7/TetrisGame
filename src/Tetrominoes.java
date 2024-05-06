@@ -17,13 +17,14 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[4][4];
-        piece = (int)(Math.random() * 7) + 1;
+        piece = 2;
+//                (int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
         this.value = value;
         rotated = 1;
         row = 1;
-        col = 3;
+        col = 4;
     }
 
     public Color[][] getShape() {
@@ -35,10 +36,10 @@ public class Tetrominoes {
         if (piece == 1) {
             width = 3;
             length = 2;
-            shape[0][0] = Color.yellow;
-            shape[0][1] = Color.yellow;
-            shape[1][1] = Color.yellow;
-            shape[1][2] = Color.yellow;
+            shape[0][0] = new Color (255, 213, 0, 255);
+            shape[0][1] = new Color (255, 213, 0, 255);
+            shape[1][1] = new Color (255, 213, 0, 255);
+            shape[1][2] = new Color (255, 213, 0, 255);
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
@@ -145,10 +146,10 @@ public class Tetrominoes {
         else {
             length = 2;
             width = 2;
-            shape[0][0] = Color.blue;
-            shape[0][1] = Color.blue;
-            shape[1][0] = Color.blue;
-            shape[1][1] = Color.blue;
+            shape[0][0] = new Color (26, 226, 231, 255);
+            shape[0][1] = new Color (26, 226, 231, 255);
+            shape[1][0] = new Color (26, 226, 231, 255);
+            shape[1][1] = new Color (26, 226, 231, 255);
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
@@ -241,20 +242,108 @@ public class Tetrominoes {
         }
         else if (piece == 2) {
             if (rotated == 1) {
-                Color temp = shape[0][2];
-                shape[0][2] = null;
-                Color temp2 = shape[0][1];
-                shape[0][1] = temp;
-                temp = shape[1][1];
-                shape[1][1] = temp2;
-                shape[1][2] = temp;
-                shape[2][2] = shape[1][0];
-                shape[1][0] = null;
+                // https://stackoverflow.com/questions/2799755/rotate-array-clockwise ms. namasivayam told me to add
+                Color[][] ret = new Color[3][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 3; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                shape = ret;
+//                Color temp = shape[0][2];
+//                shape[0][2] = null;
+//                Color temp2 = shape[0][1];
+//                shape[0][1] = temp;
+//                temp = shape[1][1];
+//                shape[1][1] = temp2;
+//                shape[1][2] = temp;
+//                shape[2][2] = shape[1][0];
+//                shape[1][0] = null;
                 length = 3;
                 width = 2;
                 rotated++;
             }
-
+            else {
+                Color[][] ret = new Color[4][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                length = 2;
+                width = 3;
+                rotated = 1;
+            }
+        }
+        else if (piece == 3) {
+            if (rotated == 1) {
+                Color[][] ret = new Color[4][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                length = 3;
+                width = 2;
+                rotated++;
+            }
+            else if (rotated == 2) {
+                Color[][] ret = new Color[4][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                length = 2;
+                width = 3;
+                rotated++;
+            }
+            else if (rotated == 3) {
+                Color[][] ret = new Color[4][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                length = 3;
+                width = 2;
+                rotated++;
+            }
+            else {
+                Color[][] ret = new Color[4][3];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3 - 1 - r] = shape[r][c];
+                    }
+                }
+                length = 2;
+                width = 3;
+                rotated = 1;
+            }
+        }
+        else if (piece == 4) {
+            if (rotated == 1) {
+                Color[][] ret = new Color[4][4];
+                for (int r = 0; r < 4; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                length = 1;
+                width = 4;
+                rotated++;
+            }
+            else {
+                Color[][] ret = new Color[4][4];
+                for (int r = 0; r < 4; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        ret[c][3-1-r] = shape[r][c];
+                    }
+                }
+                width = 1;
+                length = 4;
+                rotated = 1;
+            }
         }
     }
 
