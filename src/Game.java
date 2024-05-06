@@ -50,6 +50,15 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     public void setCurrPiece(Tetrominoes currPiece) {
         this.currPiece = currPiece;
     }
+    public void check() {
+        if(!board.hasHit(currPiece)) {
+            currPiece.shiftY(50, 0, 800);
+        } else {
+            board.removeRow();
+            currPiece = new Tetrominoes(150, 0, window, 1);
+        }
+        window.repaint();
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -103,7 +112,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
                 currPiece.shiftX(50, 0, 500);
                 break;
             case KeyEvent.VK_DOWN:
-                currPiece.shiftY(50, 0, 800);
+                check();
                 break;
             case KeyEvent.VK_UP:
                 currPiece.rotate();
@@ -120,12 +129,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     @Override
     public void actionPerformed(ActionEvent e) {
         if (started) {
-            if(!board.hasHit(currPiece)) {
-                currPiece.shiftY(50, 0, 800);
-            } else {
-                currPiece = new Tetrominoes(150, 0, window, 1);
-            }
-            window.repaint();
+            check();
         }
     }
 

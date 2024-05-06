@@ -28,7 +28,7 @@ public class Board {
         return true;
     }
     public boolean filledRow(int row) {
-        for (int i = 0; i <= numCols; i++) {
+        for (int i = 0; i < numCols; i++) {
             if (grid[row][i] == null) {
                 return false;
             }
@@ -36,10 +36,13 @@ public class Board {
         return true;
     }
     public void removeRow() {
-        for (int i = numRows; i > 1; i--) {
-            if (filledRow(i)) {
-                for (int j = 0; j < numCols; j++) {
-                    grid[i][j] = grid[i - 1][j];
+        for (int fullRow = numRows - 1; fullRow > 0; fullRow--) {
+            if (filledRow(fullRow)) {
+                for(int row = fullRow; row > 0; row--) {
+                    for (int j = 0; j < numCols; j++) {
+                        grid[row][j] = grid[row - 1][j];
+                        grid[row - 1][j] = null;
+                    }
                 }
             }
         }
