@@ -17,8 +17,7 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[4][4];
-        piece = 2;
-//                (int)(Math.random() * 7) + 1;
+        piece = (int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
         this.value = value;
@@ -109,10 +108,10 @@ public class Tetrominoes {
         else if (piece == 5) {
             length = 3;
             width = 2;
-            shape[0][0] = Color.orange;
-            shape[1][0] = Color.orange;
-            shape[2][0] = Color.orange;
-            shape[2][1] = Color.orange;
+            shape[0][0] = new Color(139, 17, 213,255);
+            shape[1][0] = new Color(139, 17, 213,255);
+            shape[2][0] = new Color(139, 17, 213,255);
+            shape[2][1] = new Color(139, 17, 213,255);
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
@@ -128,10 +127,10 @@ public class Tetrominoes {
             //change color later
             length = 3;
             width = 2;
-            shape[0][1] = Color.pink;
-            shape[1][1] = Color.pink;
-            shape[2][1] = Color.pink;
-            shape[2][0] = Color.pink;
+            shape[0][1] = Color.orange;
+            shape[1][1] = Color.orange;
+            shape[2][1] = Color.orange;
+            shape[2][0] = Color.orange;
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
@@ -214,6 +213,7 @@ public class Tetrominoes {
     }
 
     public void rotate() {
+        //works
         if (piece == 1) {
             if (rotated == 1) {
                 Color temp = shape[0][0];
@@ -240,6 +240,7 @@ public class Tetrominoes {
                 width = 3;
             }
         }
+        // doesnt work
         else if (piece == 2) {
             if (rotated == 1) {
                 // https://stackoverflow.com/questions/2799755/rotate-array-clockwise ms. namasivayam told me to add
@@ -275,6 +276,7 @@ public class Tetrominoes {
                 rotated = 1;
             }
         }
+        //doesnt work
         else if (piece == 3) {
             if (rotated == 1) {
                 Color[][] ret = new Color[4][3];
@@ -285,6 +287,7 @@ public class Tetrominoes {
                 }
                 length = 3;
                 width = 2;
+                shape = ret;
                 rotated++;
             }
             else if (rotated == 2) {
@@ -296,6 +299,7 @@ public class Tetrominoes {
                 }
                 length = 2;
                 width = 3;
+                shape = ret;
                 rotated++;
             }
             else if (rotated == 3) {
@@ -307,6 +311,7 @@ public class Tetrominoes {
                 }
                 length = 3;
                 width = 2;
+                shape = ret;
                 rotated++;
             }
             else {
@@ -318,31 +323,68 @@ public class Tetrominoes {
                 }
                 length = 2;
                 width = 3;
+                shape = ret;
                 rotated = 1;
             }
         }
+        //works
         else if (piece == 4) {
             if (rotated == 1) {
-                Color[][] ret = new Color[4][4];
-                for (int r = 0; r < 4; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
+                for (int i = 1; i <= 3; i++) {
+                    shape[0][i] = shape[i][0];
+                    shape[i][0] = null;
                 }
                 length = 1;
                 width = 4;
                 rotated++;
             }
             else {
-                Color[][] ret = new Color[4][4];
-                for (int r = 0; r < 4; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
+                for (int i = 1; i <= 3; i++) {
+                    shape[i][0] = shape[0][i];
+                    shape[0][i] = null;
                 }
                 width = 1;
                 length = 4;
                 rotated = 1;
+            }
+        }
+        //only works for first rotation
+        else if (piece == 5) {
+            if (rotated == 1) {
+                shape[0][1] = shape[2][0];
+                shape[2][0] = null;
+                shape[0][2] = shape[2][1];
+                shape[2][1] = null;
+                rotated++;
+                length = 2;
+                width = 3;
+            }
+            else if (rotated == 2) {
+                shape[1][2] = shape[0][0];
+                shape[0][0] = null;
+                shape[2][2] = shape[1][0];
+                shape[1][0] = null;
+                rotated++;
+                length = 3;
+                width = 2;
+            }
+            else if (rotated == 3) {
+                shape[2][0] = shape[0][1];
+                shape[0][1] = null;
+                shape[2][1] = shape[0][2];
+                shape[0][2] = null;
+                rotated++;
+                length = 2;
+                width = 3;
+            }
+            else {
+                shape[0][0] = shape[1][2];
+                shape[1][2] = null;
+                shape[1][0] = shape[2][2];
+                shape[2][2] = null;
+                rotated = 1;
+                length = 3;
+                width = 2;
             }
         }
     }
