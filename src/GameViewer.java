@@ -48,6 +48,9 @@ public class GameViewer extends JFrame{
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.setColor(Color.red);
             g.drawLine(0, 100, 500, 100);
+            g.setColor(Color.white);
+            g.setFont(new Font("Serif", Font.PLAIN, 50));
+            g.drawString(String.valueOf(game.getScore()), 230, 80);
             blocks = game.getCurrPiece();
             blocks.draw(g);
             board.draw(g);

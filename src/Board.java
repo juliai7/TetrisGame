@@ -35,7 +35,7 @@ public class Board {
         }
         return true;
     }
-    //only removes one row at a time
+    //only removes one row at a time and then once you place the next block down it removes the second row
     public void removeRow() {
         for (int fullRow = numRows - 1; fullRow > 0; fullRow--) {
             if (filledRow(fullRow)) {

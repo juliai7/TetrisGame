@@ -25,6 +25,10 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         clock.start();
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -55,6 +59,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
             currPiece.shiftY(50, 0, 800);
         } else {
             board.removeRow();
+            score += currPiece.getValue();
             currPiece = new Tetrominoes(200, 0, window, 50);
         }
         window.repaint();
