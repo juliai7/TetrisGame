@@ -50,7 +50,20 @@ public class GameViewer extends JFrame{
             g.drawLine(0, 100, 500, 100);
             g.setColor(Color.white);
             g.setFont(new Font("Serif", Font.PLAIN, 50));
-            g.drawString(String.valueOf(game.getScore()), 230, 80);
+            int digits = 0;
+            if (game.getScore() >= 10 && game.getScore() < 100) {
+                digits = 1;
+            }
+            else if (100 <= game.getScore() && game.getScore() < 1000) {
+                digits = 2;
+            }
+            else if (game.getScore() >= 1000 && game.getScore() < 10000) {
+                digits = 3;
+            }
+            else if (game.getScore() >= 10000 && game.getScore() < 100000) {
+                digits = 4;
+            }
+            g.drawString(String.valueOf(game.getScore()), 230 - digits * 15, 80);
             blocks = game.getCurrPiece();
             blocks.draw(g);
             board.draw(g);

@@ -1,5 +1,5 @@
 import java.awt.*;
-
+//ask how to make it not error when rotated green piece on the edge and it goes out of bounds
 public class Tetrominoes {
     private int x;
     private int y;
