@@ -35,10 +35,10 @@ public class Tetrominoes {
         if (piece == 1) {
             width = 3;
             length = 2;
-            shape[0][0] = new Color (255, 213, 0, 255);
-            shape[0][1] = new Color (255, 213, 0, 255);
-            shape[1][1] = new Color (255, 213, 0, 255);
-            shape[1][2] = new Color (255, 213, 0, 255);
+            shape[0][0] = new Color (255, 251, 0, 255);
+            shape[0][1] = new Color (255, 251, 0, 255);
+            shape[1][1] = new Color (255, 251, 0, 255);
+            shape[1][2] = new Color (255, 251, 0, 255);
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
@@ -127,10 +127,10 @@ public class Tetrominoes {
             //change color later
             length = 3;
             width = 2;
-            shape[0][1] = Color.orange;
-            shape[1][1] = Color.orange;
-            shape[2][1] = Color.orange;
-            shape[2][0] = Color.orange;
+            shape[0][1] = new Color(220, 96, 8, 255);
+            shape[1][1] = new Color(220, 96, 8, 255);
+            shape[2][1] = new Color(220, 96, 8, 255);
+            shape[2][0] = new Color(220, 96, 8, 255);
             Color[][] temp = new Color[3][3];
             temp[1][1] = Color.blue;
             Color[][] c = new Color[3][3];
