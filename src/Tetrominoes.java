@@ -17,7 +17,8 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[4][4];
-        piece = (int)(Math.random() * 7) + 1;
+        piece = 3;
+                //(int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
         this.value = value;
@@ -272,7 +273,12 @@ public class Tetrominoes {
     }
     public void rotatePieceThree() {
         if (rotated == 1) {
-
+            shape[0][0] = shape[1][0];
+            shape[1][0] = shape[1][1];
+            shape[2][0] = shape[1][2];
+            shape[1][1] = shape[0][1];
+            shape[1][2] = null;
+            shape[0][1] = null;
             length = 3;
             width = 2;
             rotated++;
@@ -290,15 +296,9 @@ public class Tetrominoes {
             rotated++;
         }
         else if (rotated == 3) {
-            Color[][] ret = new Color[4][3];
-            for (int r = 0; r < 3; r++) {
-                for (int c = 0; c < 4; c++) {
-                    ret[c][3-1-r] = shape[r][c];
-                }
-            }
+
             length = 3;
             width = 2;
-            shape = ret;
             rotated++;
         }
         else {
@@ -333,6 +333,7 @@ public class Tetrominoes {
                 // find out why its giving an error
                 if (x == 500 - width * 50) {
                     shiftX(-150, 0, 500);
+                    col = 6;
                 }
                 for (int i = 1; i <= 3; i++) {
                     shape[0][i] = shape[i][0];

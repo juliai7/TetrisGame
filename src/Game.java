@@ -41,9 +41,6 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     public void checkCompletion() {
 
     }
-    public boolean gameOver() {
-        return false;
-    }
 
     public boolean isStarted() {
         return started;

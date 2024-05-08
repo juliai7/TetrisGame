@@ -19,6 +19,7 @@ public class Board {
         for (int i = 0; i < currPiece.getLength(); i++) {
             for (int j = 0; j < currPiece.getWidth(); j++) {
                 if (currPiece.getShape()[i][j] != null) {
+                    int temp = currPiece.getCol() + j;
                     if (grid[currPiece.getRow() + i + 1][currPiece.getCol() + j] != null) {
                         return false;
                     }
