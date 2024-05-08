@@ -46,7 +46,7 @@ public class Board {
                         grid[row - 1][j] = null;
                     }
                 }
-                fullRow--;
+                fullRow++;
             }
 
         }

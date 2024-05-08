@@ -226,6 +226,9 @@ public class Tetrominoes {
             width = 2;
             rotated++;
         } else {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
             shape[0][0] = shape[0][1];
             shape[0][1] = shape[1][1];
             shape[1][1] = shape[1][0];
@@ -254,6 +257,9 @@ public class Tetrominoes {
             rotated++;
         }
         else {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
             shape[0][2] = shape[0][0];
             shape[0][0] = null;
             shape[0][1] = shape[1][0];
@@ -333,6 +339,9 @@ public class Tetrominoes {
                 rotated++;
             }
             else {
+                if (x == 500 - width * 50) {
+                    shiftX(-50, 0, 500);
+                }
                 for (int i = 1; i <= 3; i++) {
                     shape[i][0] = shape[0][i];
                     shape[0][i] = null;
