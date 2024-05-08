@@ -284,19 +284,22 @@ public class Tetrominoes {
             rotated++;
         }
         else if (rotated == 2) {
-            Color[][] ret = new Color[4][3];
-            for (int r = 0; r < 3; r++) {
-                for (int c = 0; c < 4; c++) {
-                    ret[c][3-1-r] = shape[r][c];
-                }
-            }
+            shape[0][0] = shape[2][0];
+            shape[0][1] = shape[1][0];
+            shape[0][2] = shape[0][0];
+            shape[2][0] = null;
+            shape[1][0] = null;
             length = 2;
             width = 3;
-            shape = ret;
             rotated++;
         }
         else if (rotated == 3) {
-
+            shape[0][1] = shape[0][0];
+            shape[1][1] = shape[0][1];
+            shape[2][1] = shape[0][2];
+            shape[1][0] = shape[1][1];
+            shape[0][0] = null;
+            shape[0][2] = null;
             length = 3;
             width = 2;
             rotated++;
