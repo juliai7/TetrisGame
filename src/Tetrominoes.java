@@ -211,121 +211,115 @@ public class Tetrominoes {
     public int getRow() {
         return row;
     }
+    public void rotatePieceOne() {
+        if (rotated == 1) {
+            Color temp = shape[0][0];
+            shape[0][0] = null;
+            Color temp2 = shape[0][1];
+            shape[0][1] = temp;
+            temp = shape[1][1];
+            shape[1][1] = temp2;
+            shape[1][0] = temp;
+            shape[2][0] = shape[1][2];
+            shape[1][2] = null;
+            length = 3;
+            width = 2;
+            rotated++;
+        } else {
+            shape[0][0] = shape[0][1];
+            shape[0][1] = shape[1][1];
+            shape[1][1] = shape[1][0];
+            shape[1][0] = null;
+            shape[1][2] = shape[2][0];
+            shape[2][0] = null;
+            rotated = 1;
+            length = 2;
+            width = 3;
+        }
+    }
+    public void rotatePieceTwo() {
+        if (rotated == 1) {
+            // https://stackoverflow.com/questions/2799755/rotate-array-clockwise ms. namasivayam told me to add
+            Color temp = shape[0][2];
+            shape[0][2] = null;
+            Color temp2 = shape[0][1];
+            shape[0][1] = null;
+            shape[0][0] = temp;
+            temp = shape[1][1];
+            shape[1][0] = temp2;
+            shape[1][1] = temp;
+            shape[2][1] = shape[1][0];
+            length = 3;
+            width = 2;
+            rotated++;
+        }
+        else {
+            shape[0][2] = shape[0][0];
+            shape[0][0] = null;
+            shape[0][1] = shape[1][0];
+            shape[1][0] = shape[2][1];
+            shape[2][1] = null;
+            length = 2;
+            width = 3;
+            rotated = 1;
+        }
+    }
+    public void rotatePieceThree() {
+        if (rotated == 1) {
+
+            length = 3;
+            width = 2;
+            rotated++;
+        }
+        else if (rotated == 2) {
+            Color[][] ret = new Color[4][3];
+            for (int r = 0; r < 3; r++) {
+                for (int c = 0; c < 4; c++) {
+                    ret[c][3-1-r] = shape[r][c];
+                }
+            }
+            length = 2;
+            width = 3;
+            shape = ret;
+            rotated++;
+        }
+        else if (rotated == 3) {
+            Color[][] ret = new Color[4][3];
+            for (int r = 0; r < 3; r++) {
+                for (int c = 0; c < 4; c++) {
+                    ret[c][3-1-r] = shape[r][c];
+                }
+            }
+            length = 3;
+            width = 2;
+            shape = ret;
+            rotated++;
+        }
+        else {
+            Color[][] ret = new Color[4][3];
+            for (int r = 0; r < 3; r++) {
+                for (int c = 0; c < 4; c++) {
+                    ret[c][3 - 1 - r] = shape[r][c];
+                }
+            }
+            length = 2;
+            width = 3;
+            shape = ret;
+            rotated = 1;
+        }
+    }
 
     public void rotate() {
         //works
         if (piece == 1) {
-            if (rotated == 1) {
-                Color temp = shape[0][0];
-                shape[0][0] = null;
-                Color temp2 = shape[0][1];
-                shape[0][1] = temp;
-                temp = shape[1][1];
-                shape[1][1] = temp2;
-                shape[1][0] = temp;
-                shape[2][0] = shape[1][2];
-                shape[1][2] = null;
-                length = 3;
-                width = 2;
-                rotated++;
-            } else {
-                shape[0][0] = shape[0][1];
-                shape[0][1] = shape[1][1];
-                shape[1][1] = shape[1][0];
-                shape[1][0] = null;
-                shape[1][2] = shape[2][0];
-                shape[2][0] = null;
-                rotated = 1;
-                length = 2;
-                width = 3;
-            }
+            rotatePieceOne();
         }
-        // doesnt work
         else if (piece == 2) {
-            if (rotated == 1) {
-                // https://stackoverflow.com/questions/2799755/rotate-array-clockwise ms. namasivayam told me to add
-                Color[][] ret = new Color[3][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 3; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
-                }
-                shape = ret;
-//                Color temp = shape[0][2];
-//                shape[0][2] = null;
-//                Color temp2 = shape[0][1];
-//                shape[0][1] = temp;
-//                temp = shape[1][1];
-//                shape[1][1] = temp2;
-//                shape[1][2] = temp;
-//                shape[2][2] = shape[1][0];
-//                shape[1][0] = null;
-                length = 3;
-                width = 2;
-                rotated++;
-            }
-            else {
-                Color[][] ret = new Color[4][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
-                }
-                length = 2;
-                width = 3;
-                rotated = 1;
-            }
+            rotatePieceTwo();
         }
         //doesnt work
         else if (piece == 3) {
-            if (rotated == 1) {
-                Color[][] ret = new Color[4][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
-                }
-                length = 3;
-                width = 2;
-                shape = ret;
-                rotated++;
-            }
-            else if (rotated == 2) {
-                Color[][] ret = new Color[4][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
-                }
-                length = 2;
-                width = 3;
-                shape = ret;
-                rotated++;
-            }
-            else if (rotated == 3) {
-                Color[][] ret = new Color[4][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3-1-r] = shape[r][c];
-                    }
-                }
-                length = 3;
-                width = 2;
-                shape = ret;
-                rotated++;
-            }
-            else {
-                Color[][] ret = new Color[4][3];
-                for (int r = 0; r < 3; r++) {
-                    for (int c = 0; c < 4; c++) {
-                        ret[c][3 - 1 - r] = shape[r][c];
-                    }
-                }
-                length = 2;
-                width = 3;
-                shape = ret;
-                rotated = 1;
-            }
+            rotatePieceThree();
         }
         //works
         else if (piece == 4) {
