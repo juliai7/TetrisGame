@@ -66,6 +66,10 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         window.repaint();
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 

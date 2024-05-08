@@ -47,6 +47,7 @@ public class Board {
                     }
                 }
                 fullRow++;
+                game.setScore(game.getScore() + 50);
             }
 
         }

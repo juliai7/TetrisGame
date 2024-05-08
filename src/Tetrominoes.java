@@ -330,6 +330,10 @@ public class Tetrominoes {
         //works
         else if (piece == 4) {
             if (rotated == 1) {
+                // find out why its giving an error
+                if (x == 500 - width * 50) {
+                    shiftX(-150, 0, 500);
+                }
                 for (int i = 1; i <= 3; i++) {
                     shape[0][i] = shape[i][0];
                     shape[i][0] = null;
@@ -339,9 +343,6 @@ public class Tetrominoes {
                 rotated++;
             }
             else {
-                if (x == 500 - width * 50) {
-                    shiftX(-50, 0, 500);
-                }
                 for (int i = 1; i <= 3; i++) {
                     shape[i][0] = shape[0][i];
                     shape[0][i] = null;
