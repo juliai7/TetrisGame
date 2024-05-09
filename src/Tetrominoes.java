@@ -17,8 +17,7 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[4][4];
-        piece = 3;
-                //(int)(Math.random() * 7) + 1;
+        piece = (int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
         this.value = value;
@@ -214,13 +213,8 @@ public class Tetrominoes {
     }
     public void rotatePieceOne() {
         if (rotated == 1) {
-            Color temp = shape[0][0];
+            shape[1][0] = shape[0][0];
             shape[0][0] = null;
-            Color temp2 = shape[0][1];
-            shape[0][1] = temp;
-            temp = shape[1][1];
-            shape[1][1] = temp2;
-            shape[1][0] = temp;
             shape[2][0] = shape[1][2];
             shape[1][2] = null;
             length = 3;
@@ -230,9 +224,7 @@ public class Tetrominoes {
             if (x == 500 - width * 50) {
                 shiftX(-50, 0, 500);
             }
-            shape[0][0] = shape[0][1];
-            shape[0][1] = shape[1][1];
-            shape[1][1] = shape[1][0];
+            shape[0][0] = shape[1][0];
             shape[1][0] = null;
             shape[1][2] = shape[2][0];
             shape[2][0] = null;
@@ -243,16 +235,10 @@ public class Tetrominoes {
     }
     public void rotatePieceTwo() {
         if (rotated == 1) {
-            // https://stackoverflow.com/questions/2799755/rotate-array-clockwise ms. namasivayam told me to add
-            Color temp = shape[0][2];
+            shape[0][0] = shape[0][2];
             shape[0][2] = null;
-            Color temp2 = shape[0][1];
+            shape[2][1] = shape[0][1];
             shape[0][1] = null;
-            shape[0][0] = temp;
-            temp = shape[1][1];
-            shape[1][0] = temp2;
-            shape[1][1] = temp;
-            shape[2][1] = shape[1][0];
             length = 3;
             width = 2;
             rotated++;
@@ -261,10 +247,9 @@ public class Tetrominoes {
             if (x == 500 - width * 50) {
                 shiftX(-50, 0, 500);
             }
-            shape[0][2] = shape[0][0];
+            shape[0][1] = shape[0][0];
             shape[0][0] = null;
-            shape[0][1] = shape[1][0];
-            shape[1][0] = shape[2][1];
+            shape[0][2] = shape[2][1];
             shape[2][1] = null;
             length = 2;
             width = 3;
@@ -284,6 +269,9 @@ public class Tetrominoes {
             rotated++;
         }
         else if (rotated == 2) {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
             shape[0][0] = shape[2][0];
             shape[0][1] = shape[1][0];
             shape[0][2] = shape[0][0];
@@ -305,16 +293,136 @@ public class Tetrominoes {
             rotated++;
         }
         else {
-            Color[][] ret = new Color[4][3];
-            for (int r = 0; r < 3; r++) {
-                for (int c = 0; c < 4; c++) {
-                    ret[c][3 - 1 - r] = shape[r][c];
-                }
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
             }
+            shape[1][0] = shape[2][1];
+            shape[0][1] = shape[1][0];
+            shape[1][2] = shape[0][1];
+            shape[2][1] = null;
             length = 2;
             width = 3;
-            shape = ret;
             rotated = 1;
+        }
+    }
+    public void rotatePieceFour() {
+        if (rotated == 1) {
+            if (x == 500 - width * 50) {
+                shiftX(-150, 0, 500);
+                col = 6;
+            }
+            for (int i = 1; i <= 3; i++) {
+                shape[0][i] = shape[i][0];
+                shape[i][0] = null;
+            }
+            length = 1;
+            width = 4;
+            rotated++;
+        }
+        else {
+            for (int i = 1; i <= 3; i++) {
+                shape[i][0] = shape[0][i];
+                shape[0][i] = null;
+            }
+            width = 1;
+            length = 4;
+            rotated = 1;
+        }
+    }
+    public void rotatePieceFive() {
+        if (rotated == 1) {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
+            shape[0][1] = shape[2][0];
+            shape[2][0] = null;
+            shape[0][2] = shape[2][1];
+            shape[2][1] = null;
+            rotated++;
+            length = 2;
+            width = 3;
+        }
+        else if (rotated == 2) {
+            shape[1][1] = shape[1][0];
+            shape[1][0] = null;
+            shape[2][1] = shape[0][2];
+            shape[0][2] = null;
+            rotated++;
+            length = 3;
+            width = 2;
+        }
+        else if (rotated == 3) {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
+            shape[0][2] = shape[0][0];
+            shape[0][0] = null;
+            shape[1][2] = shape[0][1];
+            shape[0][1] = null;
+            shape[1][0] = shape[2][1];
+            shape[2][1] = null;
+            rotated++;
+            length = 2;
+            width = 3;
+        }
+        else {
+            shape[0][0] = shape[1][1];
+            shape[1][1] = null;
+            shape[2][0] = shape[1][2];
+            shape[1][2] = null;
+            shape[2][1] = shape[0][2];
+            shape[0][2] = null;
+            rotated = 1;
+            length = 3;
+            width = 2;
+        }
+    }
+    public void rotatePieceSix() {
+        if (rotated == 1) {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
+            shape[0][0] = shape[2][0];
+            shape[2][0] = null;
+            shape[1][0] = shape[2][1];
+            shape[2][1] = null;
+            shape[1][2] = shape[0][1];
+            shape[0][1] = null;
+            rotated++;
+            length = 2;
+            width = 3;
+        }
+        else if (rotated == 2) {
+            shape[0][1] = shape[1][1];
+            shape[1][1] = null;
+            shape[2][0] = shape[1][2];
+            shape[1][2] = null;
+            rotated++;
+            length = 3;
+            width = 2;
+        }
+        else if (rotated == 3) {
+            if (x == 500 - width * 50) {
+                shiftX(-50, 0, 500);
+            }
+            shape[0][2] = shape[1][0];
+            shape[1][0] = null;
+            shape[1][2] = shape[2][0];
+            shape[2][0] = null;
+            rotated++;
+            width = 3;
+            length = 2;
+        }
+        else {
+            shape[1][1] = shape[0][0];
+            shape[0][0] = null;
+            shape[2][0] = shape[0][2];
+            shape[0][2] = null;
+            shape[2][1] = shape[1][2];
+            shape[1][2] = null;
+            rotated = 1;
+            width = 2;
+            length = 3;
         }
     }
 
@@ -326,74 +434,19 @@ public class Tetrominoes {
         else if (piece == 2) {
             rotatePieceTwo();
         }
-        //doesnt work
         else if (piece == 3) {
             rotatePieceThree();
         }
         //works
         else if (piece == 4) {
-            if (rotated == 1) {
-                // find out why its giving an error
-                if (x == 500 - width * 50) {
-                    shiftX(-150, 0, 500);
-                    col = 6;
-                }
-                for (int i = 1; i <= 3; i++) {
-                    shape[0][i] = shape[i][0];
-                    shape[i][0] = null;
-                }
-                length = 1;
-                width = 4;
-                rotated++;
-            }
-            else {
-                for (int i = 1; i <= 3; i++) {
-                    shape[i][0] = shape[0][i];
-                    shape[0][i] = null;
-                }
-                width = 1;
-                length = 4;
-                rotated = 1;
-            }
+            rotatePieceFour();
         }
         //only works for first rotation
         else if (piece == 5) {
-            if (rotated == 1) {
-                shape[0][1] = shape[2][0];
-                shape[2][0] = null;
-                shape[0][2] = shape[2][1];
-                shape[2][1] = null;
-                rotated++;
-                length = 2;
-                width = 3;
-            }
-            else if (rotated == 2) {
-                shape[1][2] = shape[0][0];
-                shape[0][0] = null;
-                shape[2][2] = shape[1][0];
-                shape[1][0] = null;
-                rotated++;
-                length = 3;
-                width = 2;
-            }
-            else if (rotated == 3) {
-                shape[2][0] = shape[0][1];
-                shape[0][1] = null;
-                shape[2][1] = shape[0][2];
-                shape[0][2] = null;
-                rotated++;
-                length = 2;
-                width = 3;
-            }
-            else {
-                shape[0][0] = shape[1][2];
-                shape[1][2] = null;
-                shape[1][0] = shape[2][2];
-                shape[2][2] = null;
-                rotated = 1;
-                length = 3;
-                width = 2;
-            }
+            rotatePieceFive();
+        }
+        else if (piece == 6) {
+            rotatePieceSix();
         }
     }
 
