@@ -124,7 +124,6 @@ public class Tetrominoes {
             }
         }
         else if (piece == 6) {
-            //change color later
             length = 3;
             width = 2;
             shape[0][1] = new Color(220, 96, 8, 255);
@@ -173,7 +172,6 @@ public class Tetrominoes {
         }
         else {
             x += shift;
-            //fix later
             if (shift > 0) {
                 col++;
             }
@@ -427,7 +425,6 @@ public class Tetrominoes {
     }
 
     public void rotate() {
-        //works
         if (piece == 1) {
             rotatePieceOne();
         }
@@ -437,11 +434,9 @@ public class Tetrominoes {
         else if (piece == 3) {
             rotatePieceThree();
         }
-        //works
         else if (piece == 4) {
             rotatePieceFour();
         }
-        //only works for first rotation
         else if (piece == 5) {
             rotatePieceFive();
         }

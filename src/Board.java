@@ -36,7 +36,6 @@ public class Board {
         }
         return true;
     }
-    // the second row only deletes after another block has been placed down
     public void removeRow() {
         for (int fullRow = numRows - 1; fullRow > 0; fullRow--) {
             if (filledRow(fullRow)) {
@@ -57,7 +56,7 @@ public class Board {
     }
     public boolean gameOver() {
         for (int i = 0; i < numCols; i++) {
-            if (grid[2][i] != null) {
+            if (grid[1][i] != null) {
                 return true;
             }
         }

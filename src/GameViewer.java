@@ -23,16 +23,18 @@ public class GameViewer extends JFrame{
         if(!game.isStarted()) {
             g.setColor(Color.black);
             g.setFont(new Font("Serif", Font.PLAIN, 15));
-            g.drawString("How to play Tetris:", 50, 200);
-            g.drawString("In Tetris, you must arrange a sequence of small shapes,", 50, 240);
-            g.drawString("called Tetriminos, into complete lines.", 50, 280);
-            g.drawString("As each line is completed, it will disappear from the screen.", 50, 320);
-            g.drawString("Tetriminos fall from the top of the matrix to the bottom.", 50, 360);
-            g.drawString("You must rotate the Tetriminos as they fall and fit them", 50, 400);
-            g.drawString("together to create lines.", 50, 440);
-            g.drawString("If you cannot complete a line, the blocks will eventually", 50, 480);
-            g.drawString("stack up and rise to the top of the playing field", 50, 520);
-            g.drawString("(“BLOCKING OUT”) and the game will end.", 50, 560);
+            g.drawString("How to play Tetris:", 50, 180);
+            g.drawString("In Tetris, you must arrange a sequence of small shapes,", 50, 220);
+            g.drawString("called Tetriminos, into complete lines.", 50, 260);
+            g.drawString("As each line is completed, it will disappear from the screen.", 50, 300);
+            g.drawString("Tetriminos fall from the top of the matrix to the bottom.", 50, 340);
+            g.drawString("You must rotate the Tetriminos as they fall and fit them", 50, 380);
+            g.drawString("together to create lines.", 50, 420);
+            g.drawString("If you cannot complete a line, the blocks will eventually", 50, 460);
+            g.drawString("stack up and rise to the top of the playing field", 50, 500);
+            g.drawString("(“BLOCKING OUT”) and the game will end.", 50, 540);
+            g.drawString("Press the up arrow to rotate the piece, the down arrow to", 50, 580);
+            g.drawString("make it fall faster, and the left and right arrows to move it.", 50, 620);
             g.setColor(Color.green);
             g.drawRect(75, 650, 350, 100);
             g.setFont(new Font("Serif", Font.PLAIN, 75));
