@@ -20,9 +20,10 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         window.addMouseListener(this);
         window.addMouseMotionListener(this);
         window.addKeyListener(this);
+        // Makes it fall
         Timer clock = new Timer(DELAY_IN_MILLISEC, this);
 
-        // Now actually start the timer.
+        // Starts the timer.
         clock.start();
     }
 
@@ -37,11 +38,6 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     public Tetrominoes getCurrPiece() {
         return currPiece;
     }
-
-    public void checkCompletion() {
-
-    }
-
     public boolean isStarted() {
         return started;
     }
@@ -53,11 +49,15 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
         this.currPiece = currPiece;
     }
     public void check() {
+        // Checks to see if the piece can move down or not
         if(!board.hasHit(currPiece)) {
             currPiece.shiftY(50, 0, 800);
         } else {
+            // If it can't then it checks if the block placed has completed a row
             board.removeRow();
+            // Increments score by the value of the piece
             score += currPiece.getValue();
+            // Spawns in a new piece at the top
             currPiece = new Tetrominoes(200, 0, window, 30);
         }
         window.repaint();
@@ -73,6 +73,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
     }
 
     public void mousePressed(MouseEvent e) {
+        // If the user presses anywhere in the green PLAY box
         if (75 <= e.getX() && e.getX() <= 425 && e.getY() <= 750 && e.getY() >= 650) {
             started = true;
             window.repaint();
@@ -119,6 +120,7 @@ public class Game implements MouseListener, MouseMotionListener, KeyListener, Ac
                 currPiece.shiftX(50, 0, 500);
                 break;
             case KeyEvent.VK_DOWN:
+                // Checks to see if the piece can move down or not
                 check();
                 break;
             case KeyEvent.VK_UP:

@@ -21,6 +21,7 @@ public class GameViewer extends JFrame{
 
     public void paint (Graphics g) {
         if(!game.isStarted()) {
+            // Print instructions
             g.setColor(Color.black);
             g.setFont(new Font("Serif", Font.PLAIN, 15));
             g.drawString("How to play Tetris:", 50, 180);
@@ -43,6 +44,7 @@ public class GameViewer extends JFrame{
             g.setColor(new Color(89, 146, 218, 255));
             g.drawString("TETRIS", 85, 125);
         }
+        // Once game has started switch over to game board
         else if (!board.gameOver()) {
             g.setColor(Color.black);
             // Reset window
@@ -53,6 +55,7 @@ public class GameViewer extends JFrame{
             g.setColor(Color.white);
             g.setFont(new Font("Serif", Font.PLAIN, 50));
             int digits = 0;
+            // Shift position so score is centered when digits are added
             if (game.getScore() >= 10 && game.getScore() < 100) {
                 digits = 1;
             }
@@ -70,9 +73,9 @@ public class GameViewer extends JFrame{
             blocks.draw(g);
             board.draw(g);
         }
+        // Once game has ended, display end screen
         else {
             g.setColor(Color.black);
-            // Reset window
             g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             g.setColor(Color.red);

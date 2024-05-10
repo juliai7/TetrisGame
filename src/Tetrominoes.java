@@ -17,6 +17,7 @@ public class Tetrominoes {
         this.x = x;
         this.y = y;
         shape = new Color[4][4];
+        // Chooses a random tetromino shape
         piece = (int)(Math.random() * 7) + 1;
         fillPiece();
         this.window = window;
@@ -32,6 +33,7 @@ public class Tetrominoes {
 
 
     public void fillPiece() {
+        // Creates all different pieces as 2d arrays of colors
         if (piece == 1) {
             width = 3;
             length = 2;
@@ -162,6 +164,7 @@ public class Tetrominoes {
 
     }
     public void shiftX(int shift, int xLow, int xHigh) {
+        // Makes sure the piece doesn't go out of bounds when shifting
         if (x + shift <= xLow && shift < 0) {
             x = xLow;
             col = 0;
@@ -172,6 +175,7 @@ public class Tetrominoes {
         }
         else {
             x += shift;
+            // Updates information for the board class to use
             if (shift > 0) {
                 col++;
             }
@@ -190,6 +194,7 @@ public class Tetrominoes {
     }
 
     public void shiftY(int shift, int yLow, int yHigh) {
+        // Same as shiftX
         if (y + shift <= yLow && shift < 0) {
             y = yLow;
         }
@@ -210,6 +215,7 @@ public class Tetrominoes {
         return row;
     }
     public void rotatePieceOne() {
+        // Rearranges the 2d array to rotate the piece clockwise, applies to rest of rotation methods
         if (rotated == 1) {
             shape[1][0] = shape[0][0];
             shape[0][0] = null;
@@ -219,6 +225,8 @@ public class Tetrominoes {
             width = 2;
             rotated++;
         } else {
+            // Makes sure that if user rotates it at the edge of the screen it doesn't draw the rotated piece
+            // out of bounds
             if (x == 500 - width * 50) {
                 shiftX(-50, 0, 500);
             }
@@ -305,8 +313,18 @@ public class Tetrominoes {
     }
     public void rotatePieceFour() {
         if (rotated == 1) {
-            if (x == 500 - width * 50) {
-                shiftX(-150, 0, 500);
+            // Since the green piece is four indexes long, there are 3 different places it could rotate and
+            // end up out of bounds. This takes care of every case that it could be out of bounds
+            if (x == 450) {
+                shiftX( -150, 0, 500);
+                col = 6;
+            }
+            else if (x == 400) {
+                shiftX(-100, 0 , 500);
+                col = 6;
+            }
+            else if (x == 350) {
+                shiftX(-50, 0, 500);
                 col = 6;
             }
             for (int i = 1; i <= 3; i++) {
@@ -461,6 +479,7 @@ public class Tetrominoes {
         return value;
     }
     public void draw (Graphics g) {
+        // Draws the tetromino block
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 if (shape[i][j] != null) {
